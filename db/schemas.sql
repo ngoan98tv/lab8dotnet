@@ -1,42 +1,42 @@
 CREATE TABLE [Subject] (
-  [id] integer PRIMARY KEY,
+  [id] nvarchar(5) PRIMARY KEY,
   [name] nvarchar(255)
 )
 GO
 
 CREATE TABLE [Teacher] (
-  [id] integer PRIMARY KEY,
+  [id] nvarchar(3) PRIMARY KEY,
   [name] nvarchar(255),
   [password] nvarchar(255)
 )
 GO
 
 CREATE TABLE [Class] (
-  [id] integer PRIMARY KEY,
+  [id] nvarchar(6) PRIMARY KEY,
   [name] nvarchar(255)
 )
 GO
 
 CREATE TABLE [Student] (
-  [id] integer PRIMARY KEY,
+  [id] nvarchar(6) PRIMARY KEY,
   [firstname] nvarchar(255),
   [lastname] nvarchar(255),
-  [class_id] int
+  [class_id] nvarchar(6)
 )
 GO
 
 CREATE TABLE [Course] (
-  [id] integer PRIMARY KEY,
-  [teacher_id] integer,
-  [class_id] integer,
-  [subject_id] integer,
+  [id] int IDENTITY(1,1) PRIMARY KEY,
+  [teacher_id] nvarchar(3),
+  [class_id] nvarchar(6),
+  [subject_id] nvarchar(5),
   UNIQUE ([subject_id], [teacher_id], [class_id])
 )
 GO
 
 CREATE TABLE [Point] (
-  [id] integer PRIMARY KEY,
-  [student_id] integer,
+  [id] int IDENTITY(1,1) PRIMARY KEY,
+  [student_id] nvarchar(6),
   [course_id] integer,
   [value] float
 )
