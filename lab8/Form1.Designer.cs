@@ -1,4 +1,4 @@
-﻿namespace lab8
+﻿namespace LAB8
 {
     partial class Form1
     {
@@ -37,4 +37,3 @@
         #endregion
     }
 }
-
