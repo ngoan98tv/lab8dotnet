@@ -24,8 +24,8 @@ namespace lab8
             List<string> data = Database.Instance.ReadData(query);
             if (data.Count > 0)
             {
-                Menu menu = new Menu(textUsername.Text);
-                menu.Visible = true;
+                Home home= new Home(textUsername.Text, data[0]);
+                home.Visible = true;
                 this.Visible = false;
             }
             else

@@ -199,7 +199,6 @@
             this.DanhsachSV.Size = new System.Drawing.Size(739, 457);
             this.DanhsachSV.TabIndex = 0;
             this.DanhsachSV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DanhsachSV_CellContentClick);
-            //this.DanhsachSV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DanhsachSV_CellContentClick);
             // 
             // menuStrip1
             // 
@@ -223,7 +222,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
