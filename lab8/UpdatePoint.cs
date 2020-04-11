@@ -13,28 +13,30 @@ namespace lab8
 {
     public partial class UpdatePoint : Form
     {
-        private string MSSV;
-        private string Name1;
-        private String Name2;
-        private string Course;
-        public UpdatePoint(string MSSV, string Name1, string Name2, string Course)
+        private string Student_id;
+        private string Student_name;
+        private string Course_name;
+        private string Course_id;
+        private string Point_value;
+        public UpdatePoint(string id, string firstname, string lastname, string Course, string Point)
         {
             InitializeComponent();
-            this.MSSV = MSSV;
-            this.Name1 = Name1;
-            this.Name2 = Name2;
-            this.Course = Course;
+            this.Student_id = id;
+            this.Student_name = lastname + " " + firstname;
+            this.Course_name = Course;
+            this.Course_id = Course.Split('-')[1];
+            this.Point_value = Point;
             FillTextBox();
         }
 
         // mấy chỗ fill giống như này là để set value vô.
         public void FillTextBox()
         {
-            textBoxMSSV.Text = MSSV;
-            textBoxName.Text = Name2 + " " + Name1;
-            textBoxCourse.Text = Course;
+            textBoxMSSV.Text = Student_id;
+            textBoxName.Text = Student_name;
+            textBoxCourse.Text = Course_name;
+            textBoxPoint.Text = Point_value;
         }
-
 
         private void buttonClose_Click(object sender, EventArgs e)
         {          
@@ -44,59 +46,32 @@ namespace lab8
         // Chỗ này là event click update và insert điểm
         private void buttonUpdatePoint_Click(object sender, EventArgs e)
         {
-            string Str = "Data Source=35.240.239.99;database=lab8;UID=sqlserver;password=dbadminB1607007";
-            SqlConnection Con = new SqlConnection(Str);
-            SqlCommand check = new SqlCommand("SELECT COUNT (*) FROM point WHERE student_id = '" + MSSV + "';", Con);
             DataTable dataTable = new DataTable();
-
-            string id = textBoxMSSV.Text;
-            int courseid = Convert.ToInt32(textBoxCourse.Text);              
             float point = float.Parse(textBoxPoint.Text);
-
-            // Cập nhật nếu điểm đã tồn tại.
-            Con.Open();           
-            int Exist = (int)check.ExecuteScalar();
-            Con.Close();
-            if (Exist > 0)
+            
+            if (Point_value.Length > 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Điểm đã được nhập, bạn có muốn cập nhật?", "Cập Nhật Điểm", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
                     try
                     {
-                        string Querry = "UPDATE point SET value = '" + point + "' WHERE student_id = '" + MSSV + "';";
-                        SqlCommand cmd = new SqlCommand(Querry, Con);
-                        Con.Open();
-                        cmd.ExecuteNonQuery();
-                        Con.Close();                      
+                        string queryUpdate = "UPDATE point SET value = '" + point + "' " +
+                            "WHERE student_id = '" + Student_id + "' AND course_id = '" + Course_id + "';";
+                        Database.Instance.Exec(queryUpdate);
                         MessageBox.Show("Cập nhật điểm thành công");
                     }
                     catch (Exception ex)
                     {                       
                         MessageBox.Show("Cập nhật điểm thất bại, kiểm tra lại dữ liệu nhập vào." + ex.Message);
                     }
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    //do something else
-                    this.Close();
-                }
-            } else // Thêm nếu điểm chưa tồn tại.
+            } else
             {
-                DialogResult dialogResult = MessageBox.Show("Điểm chưa được nhập, bạn có muốn nhập điểm?", "Cập Nhật Điểm", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
+                
                     try
                     {
-                        string Querry = "INSERT INTO point (student_id, course_id, value) VALUES (@student_id, @course_id, @value)";
-                        SqlCommand cmd = new SqlCommand(Querry, Con);
-                        Con.Open();
-                        cmd.Parameters.AddWithValue("@student_id", id);
-                        cmd.Parameters.AddWithValue("@course_id", courseid);
-                        cmd.Parameters.AddWithValue("@value", point); 
+                        string queryInsert = "INSERT INTO point (student_id, course_id, value) " +
+                            "VALUES ('" + Student_id + "', '" + Course_id + "', " + point + ")";
 
-                        int a = cmd.ExecuteNonQuery();
-                        if (a > 0)
+                        int result = Database.Instance.Exec(queryInsert);
+                        if (result > 0)
                         {
                             MessageBox.Show("Cập nhật điểm thành công");
                         } else
@@ -109,12 +84,7 @@ namespace lab8
                     {
                         MessageBox.Show("Cập nhật điểm thất bại, kiểm tra lại dữ liệu nhập vào." + ex.Message);
                     }
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    //do something else
-                    this.Close();
-                }
+                
             }          
         }
     }

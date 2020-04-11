@@ -107,9 +107,9 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 77);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 21);
+            this.label2.Size = new System.Drawing.Size(89, 21);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Mã Số Sinh Viên";
+            this.label2.Text = "Mã Số SV";
             // 
             // buttonUpdatePoint
             // 
@@ -118,7 +118,7 @@
             this.buttonUpdatePoint.Name = "buttonUpdatePoint";
             this.buttonUpdatePoint.Size = new System.Drawing.Size(163, 36);
             this.buttonUpdatePoint.TabIndex = 6;
-            this.buttonUpdatePoint.Text = "Lưu và Cập Nhật";
+            this.buttonUpdatePoint.Text = "Lưu";
             this.buttonUpdatePoint.UseVisualStyleBackColor = true;
             this.buttonUpdatePoint.Click += new System.EventHandler(this.buttonUpdatePoint_Click);
             // 
@@ -143,6 +143,7 @@
             // 
             // textBoxCourse
             // 
+            this.textBoxCourse.Enabled = false;
             this.textBoxCourse.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCourse.Location = new System.Drawing.Point(148, 153);
             this.textBoxCourse.Name = "textBoxCourse";
@@ -152,6 +153,7 @@
             // 
             // textBoxName
             // 
+            this.textBoxName.Enabled = false;
             this.textBoxName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxName.Location = new System.Drawing.Point(148, 112);
             this.textBoxName.Name = "textBoxName";
@@ -161,6 +163,7 @@
             // 
             // textBoxMSSV
             // 
+            this.textBoxMSSV.Enabled = false;
             this.textBoxMSSV.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxMSSV.Location = new System.Drawing.Point(148, 74);
             this.textBoxMSSV.Name = "textBoxMSSV";

@@ -61,21 +61,24 @@ namespace lab8
             dataTable.Columns.Clear();
             dataTable.Refresh();
             
-            string query = "SELECT s.id as MSSV, s.lastname as 'Họ và tên đệm', s.firstname as 'Tên', l.name as 'Lớp' " +
+            string query = "SELECT s.id as 'MSSV', s.lastname as 'Họ', s.firstname as 'Tên', " +
+                "l.name as 'Lớp', CONCAT(c.subject_id, '-', c.id) as 'Mã HP', " +
+                "p.value as 'Điểm' " +
                 "FROM student AS s " + 
                 "JOIN course AS c ON c.class_id = s.class_id " +
                 "JOIN class AS l ON l.id = c.class_id " +
+                "LEFT JOIN point AS p ON (p.student_id = s.id AND p.course_id = c.id) " +
                 "WHERE c.subject_id = '" + subject_id + "';";
             
             DataTable data = Database.Instance.LoadData(query);
             dataTable.DataSource = data;
 
-            DataGridViewButtonColumn pointCol = new DataGridViewButtonColumn();
-            pointCol.HeaderText = "Điểm";
-            pointCol.Name = "enterPointBtn";
-            pointCol.Text = "Nhập";
-            pointCol.UseColumnTextForButtonValue = true;
-            dataTable.Columns.Add(pointCol);
+            DataGridViewButtonColumn actionsCol = new DataGridViewButtonColumn();
+            actionsCol.HeaderText = "Thao tác";
+            actionsCol.Name = "actions";
+            actionsCol.Text = "Nhập điểm";
+            actionsCol.UseColumnTextForButtonValue = true;
+            dataTable.Columns.Add(actionsCol);
             this.dataTable.Visible = true;
             stateLabel.Text = "Đã tải thành công " + data.Rows.Count.ToString() + " sinh viên.";
         }
@@ -83,6 +86,35 @@ namespace lab8
         private void backButton_Click(object sender, EventArgs e)
         {
             this.dataTable.Visible = false;
+        }
+
+        private void dataTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataTable.Columns[e.ColumnIndex].Name == "actions" && e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataTable.Rows[e.RowIndex];
+                List<DataGridViewColumn> cols = dataTable.Columns.Cast<DataGridViewColumn>().ToList();
+
+                int mssvIndex = cols.FindIndex(c => c.Name == "MSSV");
+                int firstnameIndex = cols.FindIndex(c => c.Name == "Tên");
+                int lastnameIndex = cols.FindIndex(c => c.Name == "Họ");
+                int courseIndex = cols.FindIndex(c => c.Name == "Mã HP");
+                int pointIndex = cols.FindIndex(c => c.Name == "Điểm");
+
+                string rMSSV = row.Cells[mssvIndex].Value.ToString();
+                string rFirstname = row.Cells[firstnameIndex].Value.ToString();
+                string rLastname = row.Cells[lastnameIndex].Value.ToString();
+                string rCourse = row.Cells[courseIndex].Value.ToString();
+                string rPoint = row.Cells[pointIndex].Value.ToString();
+
+                UpdatePoint updatePoint = new UpdatePoint(rMSSV, rFirstname, rLastname, rCourse, rPoint);
+                updatePoint.Visible = true;
+            }
+        }
+
+        private void Home_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

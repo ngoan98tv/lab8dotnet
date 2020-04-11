@@ -40,6 +40,15 @@ namespace lab8
             return table;
         }
 
+        public int Exec(string sql)
+        {
+            SqlCommand cmd = new SqlCommand(sql, this.connection);
+            this.connection.Open();
+            int result = cmd.ExecuteNonQuery();
+            this.connection.Close();
+            return result;
+        }
+
         public List<string> ReadData(string sql)
         {
             SqlDataReader sqlDataReader;

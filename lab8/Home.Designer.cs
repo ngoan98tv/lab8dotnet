@@ -34,7 +34,6 @@
             this.dataTable = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.container = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.stateLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.teacherNameLabel = new System.Windows.Forms.Label();
@@ -69,7 +68,7 @@
             this.dataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTable.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataTable.Location = new System.Drawing.Point(249, 0);
+            this.dataTable.Location = new System.Drawing.Point(211, 0);
             this.dataTable.Name = "dataTable";
             this.dataTable.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -80,9 +79,10 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataTable.Size = new System.Drawing.Size(563, 371);
+            this.dataTable.Size = new System.Drawing.Size(601, 371);
             this.dataTable.TabIndex = 2;
             this.dataTable.Visible = false;
+            this.dataTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataTable_CellClick);
             // 
             // label3
             // 
@@ -98,18 +98,8 @@
             // 
             this.container.Location = new System.Drawing.Point(3, 37);
             this.container.Name = "container";
-            this.container.Size = new System.Drawing.Size(240, 333);
+            this.container.Size = new System.Drawing.Size(202, 333);
             this.container.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Trang chủ";
             // 
             // stateLabel
             // 
@@ -124,7 +114,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 428);
+            this.label2.Location = new System.Drawing.Point(9, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 4;
@@ -135,7 +125,7 @@
             this.teacherNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.teacherNameLabel.AutoSize = true;
             this.teacherNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teacherNameLabel.Location = new System.Drawing.Point(79, 424);
+            this.teacherNameLabel.Location = new System.Drawing.Point(76, 17);
             this.teacherNameLabel.Name = "teacherNameLabel";
             this.teacherNameLabel.Size = new System.Drawing.Size(95, 17);
             this.teacherNameLabel.TabIndex = 4;
@@ -150,10 +140,10 @@
             this.Controls.Add(this.teacherNameLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.stateLabel);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.mainPanel);
             this.Name = "Home";
             this.Text = "Lab 8 .NET";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Home_FormClosed);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).EndInit();
@@ -165,7 +155,6 @@
         #endregion
 
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label stateLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label teacherNameLabel;

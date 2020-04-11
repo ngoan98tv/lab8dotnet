@@ -124,7 +124,7 @@ namespace lab8
                 string rName2 = row.Cells[2].Value.ToString();
                 string rCourse = row.Cells[4].Value.ToString();
 
-                UpdatePoint updatePoint = new UpdatePoint(rMSSV, rName1, rName2, rCourse);
+                UpdatePoint updatePoint = new UpdatePoint(rMSSV, rName1, rName2, rCourse, "");
                 updatePoint.Visible = true;
             }
         }
