@@ -37,25 +37,33 @@
             this.stateLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.teacherNameLabel = new System.Windows.Forms.Label();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
+            this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainPanel.AutoSize = true;
             this.mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mainPanel.Controls.Add(this.dataTable);
             this.mainPanel.Controls.Add(this.label3);
             this.mainPanel.Controls.Add(this.container);
             this.mainPanel.Location = new System.Drawing.Point(12, 48);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(814, 373);
+            this.mainPanel.Size = new System.Drawing.Size(814, 376);
             this.mainPanel.TabIndex = 0;
             // 
             // dataTable
             // 
             this.dataTable.AllowUserToAddRows = false;
             this.dataTable.AllowUserToDeleteRows = false;
+            this.dataTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -67,8 +75,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataTable.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataTable.Location = new System.Drawing.Point(211, 0);
+            this.dataTable.Location = new System.Drawing.Point(289, 0);
             this.dataTable.Name = "dataTable";
             this.dataTable.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -79,7 +86,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataTable.Size = new System.Drawing.Size(601, 371);
+            this.dataTable.Size = new System.Drawing.Size(523, 376);
             this.dataTable.TabIndex = 2;
             this.dataTable.Visible = false;
             this.dataTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataTable_CellClick);
@@ -96,9 +103,12 @@
             // 
             // container
             // 
+            this.container.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.container.AutoScroll = true;
             this.container.Location = new System.Drawing.Point(3, 37);
             this.container.Name = "container";
-            this.container.Size = new System.Drawing.Size(202, 333);
+            this.container.Size = new System.Drawing.Size(280, 334);
             this.container.TabIndex = 0;
             // 
             // stateLabel
@@ -122,7 +132,6 @@
             // 
             // teacherNameLabel
             // 
-            this.teacherNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.teacherNameLabel.AutoSize = true;
             this.teacherNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teacherNameLabel.Location = new System.Drawing.Point(76, 17);
@@ -132,11 +141,23 @@
             this.teacherNameLabel.Text = "xxxx xxx xxxx";
             this.teacherNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ExitButton
+            // 
+            this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExitButton.Location = new System.Drawing.Point(750, 14);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(75, 23);
+            this.ExitButton.TabIndex = 5;
+            this.ExitButton.Text = "Thoát";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(838, 450);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.teacherNameLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.stateLabel);
@@ -161,5 +182,6 @@
         private System.Windows.Forms.FlowLayoutPanel container;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataTable;
+        private System.Windows.Forms.Button ExitButton;
     }
 }

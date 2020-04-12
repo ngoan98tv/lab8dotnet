@@ -76,7 +76,7 @@ namespace lab8
             DataGridViewButtonColumn actionsCol = new DataGridViewButtonColumn();
             actionsCol.HeaderText = "Thao tác";
             actionsCol.Name = "actions";
-            actionsCol.Text = "Nhập điểm";
+            actionsCol.Text = "Cập nhật";
             actionsCol.UseColumnTextForButtonValue = true;
             dataTable.Columns.Add(actionsCol);
             this.dataTable.Visible = true;
@@ -90,7 +90,7 @@ namespace lab8
 
         private void dataTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataTable.Columns[e.ColumnIndex].Name == "actions" && e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dataTable.Columns[e.ColumnIndex].Name == "actions")
             {
                 DataGridViewRow row = dataTable.Rows[e.RowIndex];
                 List<DataGridViewColumn> cols = dataTable.Columns.Cast<DataGridViewColumn>().ToList();
@@ -115,6 +115,13 @@ namespace lab8
         private void Home_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            Login login = new Login();
+            login.Visible = true;
         }
     }
 }

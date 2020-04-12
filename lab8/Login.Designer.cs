@@ -76,6 +76,7 @@
             this.textUsername.Name = "textUsername";
             this.textUsername.Size = new System.Drawing.Size(220, 26);
             this.textUsername.TabIndex = 3;
+            this.textUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
             // textPassword
             // 
@@ -85,6 +86,7 @@
             this.textPassword.Size = new System.Drawing.Size(220, 26);
             this.textPassword.TabIndex = 4;
             this.textPassword.UseSystemPasswordChar = true;
+            this.textPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
             // panel1
             // 
@@ -117,6 +119,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_Closed);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

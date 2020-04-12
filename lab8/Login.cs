@@ -18,13 +18,13 @@ namespace lab8
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        private void Handle_Login()
         {
             string query = "SELECT * FROM teacher WHERE id = '" + textUsername.Text.Trim() + "' AND password = '" + textPassword.Text.Trim() + "'";
             List<string> data = Database.Instance.ReadData(query);
             if (data.Count > 0)
             {
-                Home home= new Home(textUsername.Text, data[0]);
+                Home home = new Home(textUsername.Text, data[0]);
                 home.Visible = true;
                 this.Visible = false;
             }
@@ -32,12 +32,24 @@ namespace lab8
             {
                 MessageBox.Show("Incorrect username or password");
             }
-            
+        }
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            Handle_Login();
         }
         
         private void LoginForm_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                Handle_Login();
+            }
         }
     }
 }
