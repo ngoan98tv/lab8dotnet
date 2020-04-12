@@ -51,14 +51,8 @@ namespace lab8
             }
         }
 
-        private void Load_Students_Table(string subject_id)
+        private DataTable Load_Students(string subject_id)
         {
-            stateLabel.Text = "Đang tải...";
-            dataTable.DataSource = null;
-            dataTable.Rows.Clear();
-            dataTable.Columns.Clear();
-            dataTable.Refresh();
-
             string query = "SELECT s.id as 'MSSV', s.lastname as 'Họ', s.firstname as 'Tên', " +
                 "l.name as 'Lớp', CONCAT(c.subject_id, '-', c.id) as 'Mã HP', " +
                 "p.value as 'Điểm' " +
@@ -68,8 +62,26 @@ namespace lab8
                 "LEFT JOIN point AS p ON (p.student_id = s.id AND p.course_id = c.id) " +
                 "WHERE c.subject_id = '" + subject_id + "';";
 
-            DataTable data = Database.Instance.LoadData(query);
-            dataTable.DataSource = data;
+            return Database.Instance.LoadData(query);
+        }
+
+        private void Course_Click(object sender, EventArgs args)
+        {
+            Button btn = sender as Button;
+            string subject_id = btn.Name;
+            current_subject_id = subject_id;
+
+            
+            dataTable.DataSource = null;
+            dataTable.Rows.Clear();
+            dataTable.Columns.Clear();
+            dataTable.Refresh();
+
+            stateLabel.Text = "Đang tải...";
+            DataTable dataSourse = Load_Students(subject_id);
+            stateLabel.Text = "Đã tải thành công " + dataSourse.Rows.Count.ToString() + " sinh viên.";
+
+            dataTable.DataSource = dataSourse;
 
             DataGridViewButtonColumn actionsCol = new DataGridViewButtonColumn();
             actionsCol.HeaderText = "Thao tác";
@@ -78,15 +90,6 @@ namespace lab8
             actionsCol.UseColumnTextForButtonValue = true;
             dataTable.Columns.Add(actionsCol);
             this.dataTable.Visible = true;
-            stateLabel.Text = "Đã tải thành công " + data.Rows.Count.ToString() + " sinh viên.";
-        }
-
-        private void Course_Click(object sender, EventArgs args)
-        {
-            Button btn = sender as Button;
-            string subject_id = btn.Name;
-            current_subject_id = subject_id;
-            Load_Students_Table(subject_id);
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -121,7 +124,8 @@ namespace lab8
 
         private void Point_FormClosed(object sender, EventArgs e)
         {
-            Load_Students_Table(current_subject_id);
+            dataTable.DataSource = Load_Students(current_subject_id);
+            dataTable.Refresh();
         }
 
         private void Home_FormClosed(object sender, FormClosedEventArgs e)
